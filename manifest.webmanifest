@@ -1,0 +1,14 @@
+{
+  "name": "ACC Companion",
+  "short_name": "ACC",
+  "description": "ICF ACC prep — practise, exam mocks and the 100-hour log. Data stays on your device.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f1f4f0",
+  "theme_color": "#1c8158",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}
