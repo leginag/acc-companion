@@ -200,6 +200,7 @@
     font-size: 13.5px;
     margin-bottom: 12px;
   }
+  #installbar[hidden] { display: none; }
   #installbar {
     display: flex; align-items: center; gap: 10px;
     background: var(--accent-tint);
@@ -568,8 +569,9 @@
   @keyframes rise2 { from { transform: translate(-50%, 8px); opacity: 0; } }
 
   /* ── access gate ─────────────────────────────────────────────────────── */
+  #lock[hidden] { display: none; }
   #lock {
-    position: fixed; inset: 0; z-index: 100;
+    position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 100;
     background: var(--bg);
     display: grid; place-items: center;
     padding: 24px;
@@ -634,14 +636,14 @@
 </div>
 
 <div id="lock" hidden>
-  <div class="lock-box">
+  <form class="lock-box" id="lock-form" novalidate>
     <div class="lock-ic"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="9.5" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15.2" r="1.4" fill="currentColor" stroke="none"/></svg></div>
     <h1>ACC Companion</h1>
     <span class="sub">Enter the access code to open the app.</span>
     <input class="f-input" id="lock-pw" type="password" inputmode="text" autocomplete="current-password" autocapitalize="off" spellcheck="false" aria-label="Access code">
-    <button class="btn btn-primary" data-act="unlock" id="lock-go">Open</button>
+    <button class="btn btn-primary" type="submit" id="lock-go">Open</button>
     <p class="f-err" id="lock-err" role="alert"></p>
-  </div>
+  </form>
 </div>
 
 <script src="learn-data.js"></script>
@@ -4163,8 +4165,17 @@ function showLock(msg) {
   if (i) setTimeout(function () { i.focus(); }, 60);
 }
 function finishUnlock() {
-  document.getElementById('lock').hidden = true;
-  render();
+  var l = document.getElementById('lock');
+  l.hidden = true;
+  l.style.display = 'none'; // belt and braces — never let CSS resurrect it
+  try {
+    render();
+  } catch (e) {
+    l.hidden = false;
+    l.style.display = '';
+    lockMsg('Unlocked, but the app failed to draw: ' + (e && e.message ? e.message : e));
+    throw e;
+  }
 }
 function submitUnlock() {
   if (unlocking) return;
@@ -4188,9 +4199,14 @@ function submitUnlock() {
         : 'That code doesn’t open it — try again.');
   });
 }
-ACTIONS['unlock'] = submitUnlock;
-document.addEventListener('keydown', function (ev) {
-  if (ev.key === 'Enter' && ev.target && ev.target.id === 'lock-pw') submitUnlock();
+document.getElementById('lock-form').addEventListener('submit', function (ev) {
+  ev.preventDefault();
+  submitUnlock();
+});
+// While the gate is up, make failures visible instead of silent.
+window.addEventListener('error', function (ev) {
+  var l = document.getElementById('lock');
+  if (l && !l.hidden) lockMsg('Something went wrong: ' + (ev && ev.message ? ev.message : 'unknown error'));
 });
 
 /* ── boot ────────────────────────────────────────────────────────────── */
