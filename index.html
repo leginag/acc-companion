@@ -380,6 +380,41 @@
   .leitbar span.f3, .leitbar span.f4 { background: var(--p2); }
   .leitbar span.f5 { background: var(--accent); }
 
+  /* ── learn / reader ──────────────────────────────────────────────────── */
+  .learn-prog { display: flex; align-items: center; gap: 14px; padding: 14px; }
+  .modchip {
+    width: 44px; height: 44px; border-radius: 12px; flex: none;
+    background: var(--accent-tint); color: var(--accent-strong);
+    display: grid; place-items: center;
+    font-family: var(--font-round); font-weight: 700; font-size: 13px;
+  }
+  .modchip.extra { background: var(--p2-tint); color: var(--p2-strong); }
+  .modchip.done { background: var(--accent); color: var(--on-accent); }
+  .doc { font-size: 15px; line-height: 1.62; }
+  .doc > :first-child { margin-top: 0; }
+  .doc h3 { font-family: var(--font-round); font-size: 18.5px; line-height: 1.3; margin: 26px 0 8px; }
+  .doc h4 { font-family: var(--font-round); font-size: 16px; line-height: 1.35; margin: 22px 0 6px; }
+  .doc h5, .doc h6 { font-size: 14px; letter-spacing: .01em; margin: 18px 0 4px; color: var(--ink-2); }
+  .doc p { margin: 10px 0; }
+  .doc ul, .doc ol { margin: 10px 0; padding-left: 22px; }
+  .doc li { margin: 6px 0; }
+  .doc blockquote {
+    margin: 14px 0; padding: 10px 14px;
+    border-left: 3px solid var(--accent);
+    background: var(--accent-tint);
+    border-radius: 0 12px 12px 0;
+    font-size: 14.5px;
+  }
+  .doc blockquote p { margin: 4px 0; }
+  .doc hr { border: 0; border-top: 1px solid var(--hairline); margin: 18px 0; }
+  .doc a { color: var(--p2-strong); word-break: break-all; }
+  .tblwrap { overflow-x: auto; margin: 14px -2px; -webkit-overflow-scrolling: touch; }
+  .doc table { border-collapse: collapse; font-size: 13.5px; line-height: 1.5; min-width: 100%; }
+  .doc th, .doc td { border: 1px solid var(--hairline); padding: 7px 10px; text-align: left; vertical-align: top; min-width: 90px; }
+  .doc th { background: var(--surface-2); font-weight: 700; }
+  .readbtn { display: flex; align-items: center; gap: 8px; }
+  .readbtn.on { color: var(--accent-strong); }
+
   /* ── competencies ────────────────────────────────────────────────────── */
   .cc-dom { font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--p2-strong); }
   .goodlist, .badlist { margin: 6px 0 4px; padding-left: 20px; }
@@ -532,6 +567,33 @@
   }
   @keyframes rise2 { from { transform: translate(-50%, 8px); opacity: 0; } }
 
+  /* ── access gate ─────────────────────────────────────────────────────── */
+  #lock {
+    position: fixed; inset: 0; z-index: 100;
+    background: var(--bg);
+    display: grid; place-items: center;
+    padding: 24px;
+  }
+  .lock-box { width: 100%; max-width: 340px; text-align: center; }
+  .lock-box .lock-ic {
+    width: 64px; height: 64px; margin: 0 auto 14px;
+    border-radius: 18px;
+    background: var(--accent-tint); color: var(--accent-strong);
+    display: grid; place-items: center;
+  }
+  .lock-box h1 { font-family: var(--font-round); font-size: 24px; margin: 0 0 6px; }
+  .lock-box .sub { margin-bottom: 18px; display: block; }
+  .lock-box .f-input { text-align: center; font-size: 17px; }
+  .lock-box .btn { width: 100%; margin-top: 10px; }
+  .lock-box .f-err { min-height: 18px; }
+
+  /* ── learn search ────────────────────────────────────────────────────── */
+  mark { background: var(--amber-tint); color: var(--amber-ink); border-radius: 3px; padding: 0 1px; }
+  .sres { display: block; width: 100%; text-align: left; padding: 11px 14px; }
+  .sres + .sres { border-top: 1px solid var(--hairline); }
+  .sres-t { font-weight: 600; font-size: 14px; }
+  .sres-s { font-size: 13px; color: var(--ink-2); line-height: 1.5; margin-top: 2px; overflow-wrap: break-word; }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
   }
@@ -542,13 +604,17 @@
   <div id="installbar" hidden><span>Add ACC Companion to your home screen — it keeps your data safe and works offline.</span><button data-act="dismiss-install" aria-label="Dismiss">Got it</button></div>
   <main id="view"></main>
   <nav id="tabbar" aria-label="Sections">
+    <button data-act="tab" data-tab="learn">
+      <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6.2C10.4 4.9 8.2 4.2 5.6 4.2c-.9 0-1.7.1-2.4.3v14.2c.7-.2 1.5-.3 2.4-.3 2.6 0 4.8.7 6.4 2 1.6-1.3 3.8-2 6.4-2 .9 0 1.7.1 2.4.3V4.5c-.7-.2-1.5-.3-2.4-.3-2.6 0-4.8.7-6.4 2z"/><path d="M12 6.2v14.2"/></svg>
+      <span>Learn</span>
+    </button>
     <button data-act="tab" data-tab="practise">
       <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4.2c-4.6 0-8.3 3-8.3 6.8 0 2.2 1.3 4.2 3.2 5.5v3.3c0 .5.6.8 1 .5l2.9-2c.4 0 .8.1 1.2.1 4.6 0 8.3-3.1 8.3-6.9S16.6 4.2 12 4.2z"/></svg>
       <span>Practise</span>
     </button>
     <button data-act="tab" data-tab="skills">
       <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l8 4.4-8 4.4-8-4.4 8-4.4z"/><path d="M4 12.6l8 4.4 8-4.4"/><path d="M4 16.7l8 4.4 8-4.4"/></svg>
-      <span>Skills</span>
+      <span>Competencies</span>
     </button>
     <button data-act="tab" data-tab="exam">
       <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3.8" width="14" height="17" rx="2.5"/><path d="M9 3.8V6h6V3.8"/><path d="M8.7 12.6l2.2 2.2 4.4-4.6"/><path d="M8.7 18h6.6" opacity=".55"/></svg>
@@ -567,8 +633,25 @@
   <input type="file" id="importFile" accept=".json,application/json" style="display:none" aria-hidden="true">
 </div>
 
+<div id="lock" hidden>
+  <div class="lock-box">
+    <div class="lock-ic"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="9.5" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15.2" r="1.4" fill="currentColor" stroke="none"/></svg></div>
+    <h1>ACC Companion</h1>
+    <span class="sub">Enter the access code to open the app.</span>
+    <input class="f-input" id="lock-pw" type="password" inputmode="text" autocomplete="current-password" autocapitalize="off" spellcheck="false" aria-label="Access code">
+    <button class="btn btn-primary" data-act="unlock" id="lock-go">Open</button>
+    <p class="f-err" id="lock-err" role="alert"></p>
+  </div>
+</div>
+
+<script src="learn-data.js"></script>
 <script>
 'use strict';
+
+// WebCrypto (the access gate) needs a secure context.
+if (location.protocol === 'http:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+  location.replace('https://' + location.host + location.pathname + location.search);
+}
 
 /* ── constants & helpers ─────────────────────────────────────────────── */
 var KEY = 'acc.v1';
@@ -817,7 +900,7 @@ var QB = {
         ] }
       ] },
 
-    { id: 's7', n: 7, kind: 'phase', title: 'The Close', source: 'M05 Handout Category 6; M10 Workbook, “A shape for the close”.',
+    { id: 's7', n: 7, kind: 'closure', title: 'The Close', sub: 'four-part protocol', source: 'M05 Handout Category 6; M10 Workbook, “A shape for the close”.',
       intro: 'A conversation does not stop, it closes, with the coachee owning the close. Signal it before you reach it; attention to time across the whole session makes this possible.',
       groups: [
         { label: 'The four-part closure protocol', ordered: true,
@@ -1094,7 +1177,7 @@ var CC = [
 ];
 var CC_DOMAINS = ['Foundation', 'Co-Creating the Relationship', 'Communicating Effectively', 'Cultivating Learning and Growth'];
 var EXAM_BANK = [
-  /* ── Ethics (eth) — 36 ─────────────────────────────────────────────── */
+  /* ── Ethics (eth) — 40 ─────────────────────────────────────────────── */
   { id: 'E01', d: 'eth', sub: 'Confidentiality', diff: 1,
     stem: 'A client’s manager, who is paying for the coaching, asks you to tell her “how the sessions are going and what he’s working on.” What is the most appropriate response?',
     opts: ['Give a brief summary since the manager is the sponsor and is paying', 'Decline and explain that session content is confidential unless the client agrees to what may be shared', 'Share only positive information to protect the client', 'Ask the manager what she already knows and confirm it'],
@@ -1311,8 +1394,32 @@ var EXAM_BANK = [
     ans: 1,
     why: 'ICF supports ethical reflection and decision-making; when standards do not give a clear answer, coaches reflect, consult resources or supervision, and reason it through.',
     cite: 'ICF ethics guidance' },
+  { id: 'E37', d: 'eth', sub: 'Romantic involvement', diff: 2,
+    stem: 'During an engagement, a coach becomes aware of a mutual romantic attraction with the client. According to the ICF Code of Ethics, the coach should:',
+    opts: ['Continue coaching while keeping the attraction private', 'Remain aware of the issue and take appropriate action, such as ending the coaching relationship before pursuing anything further', 'Ask the sponsor for permission to continue', 'Coach the client on the attraction itself'],
+    ans: 1,
+    why: 'The Code requires coaches to be aware of the potential for intimacy in the relationship and to avoid romantic or sexual relationships with clients — taking appropriate action, for example transferring or ending the engagement.',
+    cite: '2020 Code — Responsibility to clients' },
+  { id: 'E38', d: 'eth', sub: 'Support personnel', diff: 2,
+    stem: 'A coach employs an assistant who schedules sessions and handles client emails. What does the Code require?',
+    opts: ['Nothing — confidentiality applies only to the coach personally', 'That everyone who works with the coach’s clients is held to clear confidentiality agreements', 'That the assistant never learns client names', 'That the coach stops using assistants'],
+    ans: 1,
+    why: 'Coaches maintain confidentiality with all parties and require adherence to confidentiality by anyone who works with them in support of their clients.',
+    cite: '2020 Code — Confidentiality' },
+  { id: 'E39', d: 'eth', sub: 'Agreement timing', diff: 1,
+    stem: 'When must the coaching agreement — roles, responsibilities, confidentiality and its limits — be established?',
+    opts: ['Whenever a problem first arises', 'Before or at the first coaching session', 'After a few sessions, once trust exists', 'Only if the client requests it'],
+    ans: 1,
+    why: 'The Code requires an agreement about what coaching is and is not, confidentiality and its limits, logistics, fees and responsibilities to be created with clients and sponsors before or at the initial meeting.',
+    cite: '2020 Code — Agreements' },
+  { id: 'E40', d: 'eth', sub: 'Past illegal activity', diff: 3,
+    stem: 'A client discloses a past workplace irregularity. There is no legal duty on the coach to report it and no risk of harm to anyone. The coach should:',
+    opts: ['Report it to the client’s employer to be safe', 'Maintain confidentiality as agreed and, if relevant to the coaching, let the client explore the implications themselves', 'End the engagement immediately', 'Anonymously alert the authorities'],
+    ans: 1,
+    why: 'Confidentiality is breached only for recognised limits — such as legal requirements or imminent risk of harm. Absent those, the disclosure stays confidential; what the client does with it belongs to the client.',
+    cite: '2020 Code — Confidentiality (limits)' },
 
-  /* ── Definition & Boundaries (bnd) — 36 ────────────────────────────── */
+  /* ── Definition & Boundaries (bnd) — 40 ────────────────────────────── */
   { id: 'B01', d: 'bnd', sub: 'Definition of coaching', diff: 1,
     stem: 'ICF defines coaching as:',
     opts: ['Giving expert advice to solve a client’s problems', 'Partnering with clients in a thought-provoking and creative process that inspires them to maximise their personal and professional potential', 'Diagnosing and treating psychological difficulties', 'Teaching a defined curriculum of skills'],
@@ -1529,8 +1636,32 @@ var EXAM_BANK = [
     ans: 1,
     why: 'When the client’s actual need is therapeutic, the coach honours the boundary and supports referral rather than reframing clinical work as coaching.',
     cite: 'Boundaries / referral' },
+  { id: 'B37', d: 'bnd', sub: 'How to refer', diff: 2,
+    stem: 'A coach concludes a client would benefit from seeing a mental-health professional. The most appropriate way to make the referral is to:',
+    opts: ['Name the likely diagnosis so the client can research it', 'Share the observation without diagnosing, and support the client in finding qualified help — for example several options rather than one', 'Hand over one therapist’s card and end the session', 'Contact a therapist directly on the client’s behalf without telling them'],
+    ans: 1,
+    why: 'The coach does not diagnose. An appropriate referral names what was observed, respects the client’s autonomy and choice, and supports access to qualified professionals.',
+    cite: 'Referral practice (ICF referral white paper)' },
+  { id: 'B38', d: 'bnd', sub: 'Mentor coaching vs supervision', diff: 3,
+    stem: 'What distinguishes mentor coaching from coaching supervision?',
+    opts: ['They are two names for the same service', 'Mentor coaching develops a coach’s skill against the ICF Core Competencies (e.g., for credentialing); supervision is broader reflective practice on the coach’s work and wellbeing', 'Supervision is for clients; mentor coaching is for sponsors', 'Mentor coaching is unpaid; supervision is paid'],
+    ans: 1,
+    why: 'Mentor coaching is competency-focused development of the coach’s coaching, required for credentialing. Coaching supervision is a reflective practice examining the coach’s client work, patterns and resourcefulness. Neither counts as client coaching hours.',
+    cite: 'ICF mentor coaching & supervision definitions' },
+  { id: 'B39', d: 'bnd', sub: 'Client vs sponsor', diff: 1,
+    stem: 'In ICF terminology, when an organisation pays for an employee’s coaching, the employee is the:',
+    opts: ['Sponsor, and the organisation is the client', 'Client, and the organisation is the sponsor', 'Stakeholder, and the coach is the client', 'Customer, and HR is the client'],
+    ans: 1,
+    why: 'The client is the person being coached; the sponsor is the entity paying for or arranging the coaching. The distinction drives what may be shared and with whom.',
+    cite: '2020 Code — Definitions' },
+  { id: 'B40', d: 'bnd', sub: 'Coaching a third party', diff: 2,
+    stem: 'A client spends the session asking the coach to help “fix” a difficult colleague who is not present. The coach best serves the client by:',
+    opts: ['Analysing the colleague’s likely personality', 'Bringing the focus back to the client — what they can influence, choose or do in the relationship', 'Offering to coach the colleague too', 'Agreeing the colleague is the problem'],
+    ans: 1,
+    why: 'Coaching works with the person in the conversation. The coach cannot coach an absent third party; the leverage lies in the client’s own perceptions, choices and actions.',
+    cite: 'Definition of coaching / partnering' },
 
-  /* ── Competencies, strategies & techniques (cmp) — 48 ──────────────── */
+  /* ── Competencies, strategies & techniques (cmp) — 54 ──────────────── */
   { id: 'C01', d: 'cmp', sub: 'Session agreement', diff: 1,
     stem: 'At the start of a single session, establishing the agreement most importantly involves:',
     opts: ['Reviewing the coach’s credentials', 'Partnering with the client to identify what they want to accomplish in this session', 'Setting the coach’s objectives for the client', 'Summarising the previous session at length'],
@@ -1818,7 +1949,43 @@ var EXAM_BANK = [
     opts: ['Sharing responsibility and power in service of the client’s agenda and autonomy', 'The coach leading and the client following', 'Splitting the fee with the client', 'Agreeing with everything the client says'],
     ans: 0,
     why: 'Partnering means co-creating the work — sharing power and responsibility in service of the client’s agenda and autonomy — a thread that runs through every competency.',
-    cite: 'Partnering across the ICF competencies' }
+    cite: 'Partnering across the ICF competencies' },
+  { id: 'C49', d: 'cmp', sub: 'Goal setting', diff: 2,
+    stem: 'Which session outcome is best formed, from a coaching standpoint?',
+    opts: ['“The coach will help the client be more confident someday”', 'A focus the client chose, connected to why it matters to them, with a way to know by the end of the session that it was reached', 'A target the sponsor set for the client', 'A broad life purpose to solve within the hour'],
+    ans: 1,
+    why: 'Effective session goals are client-chosen and meaningful, with success indicators the client defines — what they want to accomplish and how they will know they got there.',
+    cite: 'CC3 Establishes & Maintains Agreements' },
+  { id: 'C50', d: 'cmp', sub: 'Motivation', diff: 2,
+    stem: 'Early in a session, asking “What makes this important to you right now?” chiefly serves to:',
+    opts: ['Fill time while the coach plans questions', 'Connect the goal to the client’s own motivation and values, strengthening commitment to the outcome', 'Test whether the topic is worth the fee', 'Let the coach judge whether the goal is worthwhile'],
+    ans: 1,
+    why: 'Exploring the significance of the outcome anchors the session in the client’s intrinsic motivation — goals tied to what matters to the client carry more commitment than externally imposed ones.',
+    cite: 'CC3 — exploring significance / motivation' },
+  { id: 'C51', d: 'cmp', sub: 'Generating options', diff: 2,
+    stem: 'A client is exploring ways forward. The coach has a promising idea. The most competency-aligned move is to:',
+    opts: ['Present the idea first, since it is probably best', 'Invite the client to generate their own possibilities first; any coach idea comes later, with permission and no attachment', 'Withhold all input under any circumstances', 'Assign the idea as homework'],
+    ans: 1,
+    why: 'The client’s own thinking leads. A coach may offer input with permission, framed as one possibility among others, and released freely — never steering the client to it.',
+    cite: 'CC7/CC8 — client-generated options' },
+  { id: 'C52', d: 'cmp', sub: 'Designing accountability', diff: 2,
+    stem: 'A client commits to an action. Regarding follow-through, the coach best partners by:',
+    opts: ['Setting deadlines and checking compliance like a manager', 'Inviting the client to design their own accountability — what they will do, by when, and how they will hold themselves to it', 'Leaving accountability out of coaching entirely', 'Asking the sponsor to monitor the client'],
+    ans: 1,
+    why: 'The coach partners with the client to design methods of accountability the client owns. Autonomy stays with the client; the coach does not police.',
+    cite: 'CC8 Facilitates Client Growth' },
+  { id: 'C53', d: 'cmp', sub: 'Choosing among topics', diff: 2,
+    stem: 'A client arrives with three tangled topics and limited time. The coach should:',
+    opts: ['Pick the topic that seems most urgent to the coach', 'Reflect the topics back and partner with the client to choose where to focus today', 'Cover all three superficially', 'Postpone the session until the client is clearer'],
+    ans: 1,
+    why: 'The client owns the agenda. The coach makes the choice visible — often by reflecting the threads back — and the client decides the session’s focus.',
+    cite: 'CC3 — client-chosen focus' },
+  { id: 'C54', d: 'cmp', sub: 'Developing the mindset', diff: 2,
+    stem: 'Which behaviour best shows a coach embodying a coaching mindset as an ongoing practice?',
+    opts: ['Relying on natural talent between sessions', 'Regular reflective practice — for example reviewing sessions, working with a mentor coach, and preparing mentally before coaching', 'Memorising longer lists of questions', 'Coaching more hours without review'],
+    ans: 1,
+    why: 'The 2019 model describes the mindset as developed and sustained: ongoing learning, reflective practice, and preparation — including mentoring and self-regulation before and during sessions.',
+    cite: 'CC2 Embodies a Coaching Mindset' }
 ];
 // POLICY and the Runway steps are defined alongside the Runway view below.
 
@@ -1843,7 +2010,8 @@ function seed() {
     mentor: [],
     exam: { attempts: [], active: null, stats: {} },
     leitner: {},
-    runway: { steps: {} }
+    runway: { steps: {} },
+    learn: { read: {} }
   };
 }
 function migrate(d) {
@@ -1904,6 +2072,7 @@ function migrate(d) {
   out.exam.stats = (ex.stats && typeof ex.stats === 'object') ? ex.stats : {};
   out.leitner = (d.leitner && typeof d.leitner === 'object') ? d.leitner : {};
   out.runway.steps = (d.runway && d.runway.steps && typeof d.runway.steps === 'object') ? d.runway.steps : {};
+  out.learn.read = (d.learn && d.learn.read && typeof d.learn.read === 'object') ? d.learn.read : {};
   return out;
 }
 function load() {
@@ -1925,6 +2094,7 @@ var view = {
   pendingImport: null,
   importErr: null,
   hours: { showAllSessions: false, showAllClients: false },
+  learn: { screen: 'home', mod: null, doc: null },
   practise: { screen: 'home', sec: null, queue: null, idx: 0, revealed: false },
   comp: { sel: null },
   exam: { screen: 'home', reviewAttempt: null, reviewIdx: 0, drill: null },
@@ -2143,8 +2313,16 @@ function vPractiseHome() {
   h += '<button class="btn btn-surface btn-add" data-act="p-flash">Scenario flashcards · ' + cards + ' drills</button>';
 
   // sections
-  h += '<div class="h-label">The conversation, phase by phase</div><div class="rows">';
+  h += '<div class="h-label">The conversation — the six phases</div><div class="rows">';
   QB.sections.filter(function (s) { return s.kind === 'phase'; }).forEach(function (s) {
+    h += secRow(s);
+  });
+  h += '</div>';
+  h += '<p class="note" style="margin-top:8px">Weather patterns, not railway stations — the six phases from M05, held internally and moved through in any order. Rehearse them end to end:</p>';
+  h += '<button class="btn btn-primary btn-add" data-act="p-walk">Rehearse a full conversation — opening to close</button>';
+
+  h += '<div class="h-label">Closing the conversation</div><div class="rows">';
+  QB.sections.filter(function (s) { return s.kind === 'closure'; }).forEach(function (s) {
     h += secRow(s);
   });
   h += '</div>';
@@ -2162,8 +2340,9 @@ function secRow(s) {
   (s.groups || []).forEach(function (g) { n += g.items ? g.items.length : 0; });
   if (s.protocol) n = s.protocol.length;
   var meta = s.protocol ? (n + ' moves') : (n + ' question' + (n === 1 ? '' : 's'));
+  var name = (s.kind === 'phase' ? s.n + '. ' : '') + s.title + (s.sub ? ' — ' + s.sub : '');
   return '<button class="mrow card" data-act="p-open" data-screen="section" data-id="' + s.id + '">' +
-    '<span class="mrow-mid"><span class="mrow-name">' + s.n + '. ' + esc(s.title) + (s.sub ? ' — ' + esc(s.sub) : '') + '</span>' +
+    '<span class="mrow-mid"><span class="mrow-name">' + esc(name) + '</span>' +
     '<span class="sub">' + meta + '</span></span>' + SVG_NEXT + '</button>';
 }
 
@@ -2171,7 +2350,7 @@ function vSection() {
   var s = sectionById(view.practise.sec);
   if (!s) { view.practise.screen = 'home'; return vPractiseHome(); }
   var h = '<div class="subhead"><button class="nav-btn" data-act="p-back" aria-label="Back">' + SVG_PREV + '</button>' +
-    '<h1>' + s.n + '. ' + esc(s.title) + '</h1></div>';
+    '<h1>' + (s.kind === 'phase' ? s.n + '. ' : '') + esc(s.title) + '</h1></div>';
   if (s.sub) h += '<p class="view-sub" style="margin-top:-6px">' + esc(s.sub) + '</p>';
   h += '<p class="srcnote">Source: ' + esc(s.source) + '</p>';
   if (s.intro) h += '<p class="note" style="margin:10px 2px 0">' + esc(s.intro) + '</p>';
@@ -2194,6 +2373,23 @@ function vSection() {
 
   var hasCard = (s.groups || []).some(function (g) { return g.card; });
   if (hasCard) h += '<button class="btn btn-surface btn-add" data-act="p-flash" data-id="' + s.id + '">Drill this as a flashcard</button>';
+
+  var ccs = CC.filter(function (c) { return c.phases.indexOf(s.id) !== -1; });
+  if (ccs.length) {
+    h += '<div class="h-label">What assessors listen for here</div><div class="rows">' +
+      ccs.map(function (c) {
+        return '<button class="mrow card" data-act="p-tocc" data-id="' + c.id + '">' +
+          '<span class="mrow-mid"><span class="mrow-name">' + c.id + '. ' + esc(c.name) + '</span>' +
+          '<span class="sub">open in Competencies</span></span>' + SVG_NEXT + '</button>';
+      }).join('') + '</div>';
+  }
+  if (LEARN_OK && QB_MOD[s.id] && learnMod(QB_MOD[s.id])) {
+    var lm = learnMod(QB_MOD[s.id]);
+    h += '<div class="h-label">Go deeper</div>' +
+      '<button class="mrow card" data-act="learn-jump" data-id="' + lm.id + '">' +
+      '<span class="mrow-mid"><span class="mrow-name">' + esc(lm.title) + '</span>' +
+      '<span class="sub">read the source module in Learn</span></span>' + SVG_NEXT + '</button>';
+  }
   return h;
 }
 
@@ -2214,11 +2410,13 @@ function vFlash() {
   if (!q.length) { p.screen = 'home'; return vPractiseHome(); }
   var idx = Math.min(p.idx, q.length - 1);
   var card = q[idx];
+  var ordered = !!p.ordered;
   var h = '<div class="subhead"><button class="nav-btn" data-act="p-back" aria-label="Back">' + SVG_PREV + '</button>' +
-    '<h1>Flashcards</h1><span class="sub">' + (idx + 1) + ' / ' + q.length + '</span></div>';
+    '<h1>' + (ordered ? 'Full conversation' : 'Flashcards') + '</h1><span class="sub">' + (idx + 1) + ' / ' + q.length + '</span></div>';
+  if (ordered) h += '<p class="view-sub" style="margin-top:-6px">Opening to close, in the order a session moves. Picture each moment before revealing the questions.</p>';
 
   h += '<div class="card flash">' +
-    '<div class="flash-k">' + esc(card.sec) + (card.label ? ' · ' + esc(card.label) : '') + '</div>' +
+    '<div class="flash-k">' + (ordered && card.n <= 6 ? 'Phase ' + card.n + ' · ' : '') + esc(card.sec) + (card.label ? ' · ' + esc(card.label) : '') + '</div>' +
     '<div class="flash-p">' + esc(card.scenario) + '</div>';
   if (p.revealed) {
     h += '<div style="border-top:1px solid var(--hairline);margin:14px 0 12px"></div>' +
@@ -2231,7 +2429,7 @@ function vFlash() {
   h += '<div class="qnav">' +
     '<button class="btn btn-surface" style="min-height:44px" data-act="p-flash-prev"' + (idx === 0 ? ' disabled' : '') + '>' + SVG_PREV + '</button>' +
     '<span class="spacer"></span>' +
-    '<button class="btn btn-surface" style="min-height:44px;padding:0 20px" data-act="p-shuffle">Shuffle</button>' +
+    (ordered ? '' : '<button class="btn btn-surface" style="min-height:44px;padding:0 20px" data-act="p-shuffle">Shuffle</button>') +
     '<button class="btn btn-primary" style="min-height:44px;padding:0 22px" data-act="p-flash-next">' + (idx === q.length - 1 ? 'Done' : 'Next') + '</button>' +
     '</div>';
   return h;
@@ -2276,6 +2474,204 @@ function vLeitner() {
 }
 
 function vPractiseView() { return vPractise(); } // @VIEW:PRACTISE
+/* ── learn ───────────────────────────────────────────────────────────── */
+var LEARN = null;       // decrypted from LEARN_ENC by the access gate
+var LEARN_OK = false;
+var LEARN_INDEX = null; // lazy plain-text search index
+function learnMod(id) {
+  if (!LEARN_OK) return null;
+  for (var i = 0; i < LEARN.length; i++) if (LEARN[i].id === id) return LEARN[i];
+  return null;
+}
+function docKey(mod, d, i) { return mod.id + '|' + (d.source || 'doc' + i); }
+function modLabel(m) {
+  if (/^M\d+$/.test(m.id)) { var n = +m.id.slice(1); return n ? 'Module ' + n : 'Module 0 — Introduction'; }
+  return m.id === 'IW' ? 'Integration weeks' : 'Programme';
+}
+function learnCounts(mod) {
+  var read = 0;
+  mod.docs.forEach(function (d, i) { if (db.learn.read[docKey(mod, d, i)]) read++; });
+  return { read: read, total: mod.docs.length };
+}
+function fmtWords(w) {
+  if (!w) return '';
+  var min = Math.max(1, Math.round(w / 200));
+  return (w >= 1000 ? (Math.round(w / 100) / 10) + 'k' : w) + ' words · ~' + min + ' min read';
+}
+// section id → source module in Learn (for cross-links from Practise)
+var QB_MOD = { s1: 'M05', s2: 'M05', s3: 'M05', s4: 'M05', s5: 'M05', s6: 'M05', s7: 'M10', s8: 'M06', s9: 'M09', s10: 'M09', s11: 'M08', s12: 'M10', s13: 'M07' };
+
+function learnIndex() {
+  if (LEARN_INDEX || !LEARN_OK) return LEARN_INDEX || [];
+  LEARN_INDEX = [];
+  LEARN.forEach(function (m) {
+    m.docs.forEach(function (d, i) {
+      var text = d.html.replace(/<[^>]+>/g, ' ')
+        .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, '’')
+        .replace(/\s+/g, ' ').trim();
+      LEARN_INDEX.push({ mod: m.id, modTitle: m.title, i: i, title: d.title, text: text, low: text.toLowerCase() });
+    });
+  });
+  return LEARN_INDEX;
+}
+function learnResultsHTML(q) {
+  q = (q || '').trim();
+  if (q.length < 3) return q.length ? '<p class="note">Keep typing — three letters or more.</p>' : '';
+  var ql = q.toLowerCase();
+  var rows = [];
+  learnIndex().some(function (e) {
+    var pos = e.low.indexOf(ql);
+    if (pos === -1) return false;
+    var count = 0, at = pos;
+    while (at !== -1 && count < 100) { count++; at = e.low.indexOf(ql, at + ql.length); }
+    var start = Math.max(0, pos - 45);
+    var end = Math.min(e.text.length, pos + ql.length + 65);
+    var snip = (start > 0 ? '…' : '') + esc(e.text.slice(start, pos)) +
+      '<mark>' + esc(e.text.slice(pos, pos + ql.length)) + '</mark>' +
+      esc(e.text.slice(pos + ql.length, end)) + (end < e.text.length ? '…' : '');
+    rows.push('<button class="sres" data-act="learn-doc" data-id="' + e.mod + '" data-i="' + e.i + '" data-hl="1">' +
+      '<span class="sres-t">' + esc(e.title) + ' <span class="sub" style="font-weight:400">· ' + esc(e.mod === 'IW' ? 'Integration weeks' : e.mod === 'PROG' ? 'Programme' : e.mod) + ' · ' + count + (count === 100 ? '+' : '') + ' match' + (count === 1 ? '' : 'es') + '</span></span>' +
+      '<span class="sres-s">' + snip + '</span></button>');
+    return rows.length >= 30;
+  });
+  if (!rows.length) return '<p class="note">No matches for “' + esc(q) + '” across the materials.</p>';
+  return '<div class="card qlist" style="margin-top:10px">' + rows.join('') + '</div>';
+}
+function hlDoc(q) {
+  q = (q || '').trim();
+  if (q.length < 3) return;
+  var root = document.querySelector('#view .doc');
+  if (!root) return;
+  var ql = q.toLowerCase();
+  var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+  var nodes = [], n;
+  while ((n = walker.nextNode())) if (n.nodeValue.toLowerCase().indexOf(ql) !== -1) nodes.push(n);
+  nodes.forEach(function (tn) {
+    var text = tn.nodeValue, lower = text.toLowerCase();
+    var frag = document.createDocumentFragment();
+    var idx = 0, pos;
+    while ((pos = lower.indexOf(ql, idx)) !== -1) {
+      frag.appendChild(document.createTextNode(text.slice(idx, pos)));
+      var mk = document.createElement('mark');
+      mk.textContent = text.slice(pos, pos + ql.length);
+      frag.appendChild(mk);
+      idx = pos + ql.length;
+    }
+    frag.appendChild(document.createTextNode(text.slice(idx)));
+    tn.parentNode.replaceChild(frag, tn);
+  });
+  var first = root.querySelector('mark');
+  if (first) setTimeout(function () { first.scrollIntoView({ block: 'center' }); }, 40);
+}
+
+function vLearn() {
+  var l = view.learn;
+  if (!LEARN_OK) {
+    return '<h1 class="view-title">Learn</h1>' +
+      '<div class="card empty"><p><strong>The materials didn’t load.</strong><br>' +
+      'This tab needs a one-off connection to fetch the module texts. Open the app online once and they’ll stay available offline.</p></div>';
+  }
+  if (l.screen === 'doc') return vLearnDoc();
+  if (l.screen === 'mod') return vLearnMod();
+  return vLearnHome();
+}
+
+function vLearnHome() {
+  var totRead = 0, totDocs = 0;
+  LEARN.forEach(function (m) { var c = learnCounts(m); totRead += c.read; totDocs += c.total; });
+  var h = '<h1 class="view-title">Learn</h1>' +
+    '<p class="view-sub">The programme materials, module by module — a summary first, then the full text of every document, word for word.</p>';
+
+  h += '<div class="card learn-prog">' + ring(totDocs ? totRead / totDocs : 0, 54, 7) +
+    '<div><div class="sum-big">' + totRead + ' <small style="font-size:14px;color:var(--muted)">of ' + totDocs + '</small></div>' +
+    '<div class="sub">documents read — tap a module to continue</div></div></div>';
+
+  h += '<div class="h-label">Search the materials</div>' +
+    '<input class="f-input" id="learn-q" type="search" placeholder="Any word or phrase, across every document…" value="' + esc(view.learn.q || '') + '" autocomplete="off">' +
+    '<div id="learn-results">' + learnResultsHTML(view.learn.q) + '</div>';
+
+  h += '<div class="h-label">Modules</div><div class="rows">';
+  LEARN.forEach(function (m) {
+    if (m.id === 'IW' || m.id === 'PROG') return;
+    h += learnRow(m, false);
+  });
+  h += '</div>';
+
+  h += '<div class="h-label">Between the modules</div><div class="rows">';
+  LEARN.forEach(function (m) {
+    if (m.id !== 'IW' && m.id !== 'PROG') return;
+    h += learnRow(m, true);
+  });
+  h += '</div>';
+
+  h += '<p class="note">Verbatim course materials from your UNSSC ICF Level 1 programme, shared with participants. Summaries are the app’s own. New modules get added as the programme releases them.</p>';
+  return h;
+}
+function learnRow(m, extra) {
+  var c = learnCounts(m);
+  var done = c.total && c.read === c.total;
+  var chip = extra ? (m.id === 'IW' ? 'IW' : 'INFO') : m.id.replace('M0', 'M');
+  return '<button class="mrow card" data-act="learn-open" data-id="' + m.id + '">' +
+    '<span class="modchip' + (done ? ' done' : (extra ? ' extra' : '')) + '">' + (done ? SVG_CHECK16 : chip) + '</span>' +
+    '<span class="mrow-mid"><span class="mrow-name" style="white-space:normal">' + esc(m.title) + '</span>' +
+    '<span class="sub">' + esc(m.subtitle || '') + (c.total ? ' · ' + c.read + '/' + c.total + ' read' : '') + '</span></span>' + SVG_NEXT + '</button>';
+}
+
+function vLearnMod() {
+  var m = learnMod(view.learn.mod);
+  if (!m) { view.learn.screen = 'home'; return vLearnHome(); }
+  var h = '<div class="subhead"><button class="nav-btn" data-act="learn-back" aria-label="Back">' + SVG_PREV + '</button>' +
+    '<h1>' + esc(m.title) + '</h1></div>';
+  h += '<p class="view-sub" style="margin-top:-6px">' + esc(modLabel(m)) + (m.subtitle ? ' · ' + esc(m.subtitle) : '') + '</p>';
+
+  h += '<div class="h-label">In brief</div>' +
+    '<div class="card doc" style="padding:4px 16px 6px;font-size:14.5px">' + m.summary + '</div>';
+
+  h += '<div class="h-label">The materials — word for word</div><div class="rows">';
+  m.docs.forEach(function (d, i) {
+    var read = !!db.learn.read[docKey(m, d, i)];
+    h += '<button class="mrow card" data-act="learn-doc" data-id="' + m.id + '" data-i="' + i + '">' +
+      '<span class="modchip' + (read ? ' done' : '') + '" style="width:34px;height:34px;border-radius:10px">' + (read ? SVG_CHECK16 : (i + 1)) + '</span>' +
+      '<span class="mrow-mid"><span class="mrow-name" style="white-space:normal">' + esc(d.title) + '</span>' +
+      '<span class="sub">' + esc(fmtWords(d.words)) + '</span></span>' + SVG_NEXT + '</button>';
+  });
+  h += '</div>';
+
+  var secs = QB.sections.filter(function (s) { return QB_MOD[s.id] === m.id; });
+  if (secs.length) {
+    h += '<div class="h-label">Practise what this module teaches</div><div class="rows">';
+    secs.forEach(function (s) {
+      h += '<button class="mrow card" data-act="cc-toqb" data-id="' + s.id + '">' +
+        '<span class="mrow-mid"><span class="mrow-name">' + (s.kind === 'phase' ? s.n + '. ' : '') + esc(s.title) + '</span>' +
+        '<span class="sub">open in Practise</span></span>' + SVG_NEXT + '</button>';
+    });
+    h += '</div>';
+  }
+  return h;
+}
+
+function vLearnDoc() {
+  var m = learnMod(view.learn.mod);
+  if (!m) { view.learn.screen = 'home'; return vLearnHome(); }
+  var i = clampInt(view.learn.doc, 0, m.docs.length - 1, 0);
+  var d = m.docs[i];
+  var key = docKey(m, d, i);
+  var read = !!db.learn.read[key];
+  var h = '<div class="subhead"><button class="nav-btn" data-act="learn-mod-back" aria-label="Back">' + SVG_PREV + '</button>' +
+    '<h1>' + esc(d.title) + '</h1></div>' +
+    '<p class="srcnote" style="margin-top:-6px">' + esc(modLabel(m)) + (d.source ? ' · source: ' + esc(d.source) : '') + (d.words ? ' · ' + esc(fmtWords(d.words)) : '') + '</p>';
+
+  h += '<div class="card doc" style="padding:16px">' + d.html + '</div>';
+
+  h += '<div class="qnav">' +
+    '<button class="btn btn-surface readbtn' + (read ? ' on' : '') + '" style="flex:1" data-act="learn-read" data-k="' + esc(key) + '">' +
+    SVG_CHECK16 + (read ? 'Read' : 'Mark as read') + '</button>' +
+    (i < m.docs.length - 1
+      ? '<button class="btn btn-primary" style="flex:1" data-act="learn-doc" data-id="' + m.id + '" data-i="' + (i + 1) + '">Next document</button>'
+      : '<button class="btn btn-primary" style="flex:1" data-act="learn-mod-back">Back to module</button>') +
+    '</div>';
+  return h;
+}
 /* ── competencies ────────────────────────────────────────────────────── */
 function ccById(id) {
   for (var i = 0; i < CC.length; i++) if (CC[i].id === id) return CC[i];
@@ -2298,6 +2694,12 @@ function vSkills() {
     h += '</div>';
   });
 
+  if (LEARN_OK && learnMod('M11')) {
+    h += '<div class="h-label">Go deeper</div>' +
+      '<button class="mrow card" data-act="learn-jump" data-id="M11">' +
+      '<span class="mrow-mid"><span class="mrow-name">' + esc(learnMod('M11').title) + '</span>' +
+      '<span class="sub">Module 11 — read the full text in Learn</span></span>' + SVG_NEXT + '</button>';
+  }
   h += '<p class="note">The behavioural statements and failure lists are ICF’s published criteria (ACC Minimum Skills Requirements, rev. Jan 2026). They are indicators, not a checklist — assessors weigh the whole conversation.</p>';
   return h;
 }
@@ -2465,6 +2867,7 @@ function vExam() {
   if (s === 'review') return vExamReview();
   if (s === 'drill') return vExamDrill();
   if (s === 'cheat') return vExamCheat();
+  if (s === 'facts') return vExamFacts();
   return vExamHome();
 }
 
@@ -2502,6 +2905,7 @@ function vExamHome() {
     '</div>';
 
   h += '<button class="btn btn-surface btn-add" data-act="ex-cheat">Ethics cheat-sheet — exam vs practice</button>';
+  h += '<button class="btn btn-surface btn-add" data-act="ex-facts">The real exam — key facts, verified</button>';
 
   if (db.exam.attempts.length) {
     h += '<div class="h-label">Your mocks</div><div class="rows">';
@@ -2685,13 +3089,37 @@ function vExamCheat() {
   return h;
 }
 
+function vExamFacts() {
+  var rows = [
+    ['Format', '60 knowledge-based multiple-choice items, four options, exactly one correct. 10 of the 60 are unscored field-test items, so your score rests on 50.'],
+    ['Timing', '2 minutes of instructions, then Section 1 (30 items, 39 min), an optional 10-minute break, and Section 2 (30 items, 39 min). About 78 seconds per question.'],
+    ['Navigation', 'You can flag items and review them within the current section only — once a section is submitted there is no going back.'],
+    ['Delivery', 'Pearson VUE test centre or OnVUE online proctoring. After ICF accepts your application you have 60 days to schedule and sit it.'],
+    ['Scoring', 'Scaled 200–600, pass mark 460. No penalty for wrong answers — answer everything. Instant preliminary result; official result about a week later, with per-domain feedback if you fail.'],
+    ['Domains', 'Coaching Ethics 30% · Definition & Boundaries of Coaching 30% · Coaching Competencies, Strategies & Techniques 40%.'],
+    ['What it tests', 'The 2019 Core Competencies and the 2020 Code of Ethics — NOT the 2025 revisions. Confirmed in the Candidate Guide (rev. March 2026). An update to the 2025 documents is expected “later in 2026”; re-check before you book.'],
+    ['Language', 'The exam runs in English; side-by-side language aids exist in 15 more languages and add an automatic 30 minutes. ESL candidates without a language aid, living in a non-English-speaking country, also get 30 minutes.'],
+    ['Retakes', '$105 per retake. Wait 14 days after the first attempt, 30 days after any later one; at most 6 attempts in a rolling 12 months.'],
+    ['Encouragement', 'In 2024, over 80% of exam takers passed on their first try (ICF).']
+  ];
+  var h = '<div class="subhead"><button class="nav-btn" data-act="ex-home" aria-label="Back">' + SVG_PREV + '</button>' +
+    '<h1>The real exam — key facts</h1></div>' +
+    '<p class="view-sub" style="margin-top:-6px">Verified against ICF’s ACC Candidate Guide (rev. March 2026) and coachingfederation.org, 14 July 2026.</p>';
+  h += '<div class="card qlist">' + rows.map(function (r) {
+    return '<div class="qrow"><strong>' + esc(r[0]) + '.</strong> ' + esc(r[1]) + '</div>';
+  }).join('') + '</div>';
+  h += '<p class="note">Official links: <a href="https://coachingfederation.org/credentialing/icf-credential-exams/acc-exam/" target="_blank" rel="noopener">ACC Exam page</a> · <a href="https://coachingfederation.org/resource/acc-exam-sample-questions/" target="_blank" rel="noopener">sample questions</a> · <a href="https://coachingfederation.org/resource/acc-exam-reference-list/" target="_blank" rel="noopener">reference list</a> · <a href="https://coachingfederation.org/credentialing/credential-updates/" target="_blank" rel="noopener">credential updates</a>.</p>';
+  return h;
+}
+
 /* ── runway ──────────────────────────────────────────────────────────── */
 var POLICY = {
-  asOf: '2026-07-08',
+  asOf: '2026-07-14',
   items: [
-    'The ACC Exam is being updated later in 2026 to reflect the 2025 Core Competencies. This app’s exam practice targets the 2019 competencies and 2020 Code of Ethics — what the exam tests today. Re-check before you book.',
+    'The ACC Exam is being updated “later in 2026” to reflect the 2025 Core Competencies. As of 14 July 2026 the switch has NOT happened and no date is announced — the Candidate Guide (rev. March 2026) still says to study the 2019 competencies and 2020 Code of Ethics, which is what this app targets. Re-check before you book.',
+    'ICF announced on 13 April 2026 that the ACC and PCC performance evaluation will be replaced by an enhanced mentor-coaching requirement (skills validation by MCS mentors, phasing in by April 2027 for Portfolio-path candidates). How Level 1 in-programme evaluations are affected is not yet explicit — ask your programme if your timeline slips.',
     'From 1 January 2027, new mentor-coaching hours must be with a mentor holding the ICF Mentor Coach Specialization (MCS). Mentor coaching completed in your programme before then remains valid.',
-    'These rules were checked on coachingfederation.org on 8 July 2026. ICF policy changes — always confirm current requirements before you apply.'
+    'These rules were checked on coachingfederation.org on 14 July 2026. ICF policy changes — watch the Credential Updates page and always confirm before you apply.'
   ]
 };
 function runwayHoursDone() {
@@ -2725,7 +3153,7 @@ function vRunway() {
 
   h += '<div class="h-label">After the exam</div>' +
     '<div class="card qlist"><div class="qrow"><strong>Retakes:</strong> wait 14 days after a first attempt, 30 days after that; up to 6 attempts in 12 months; $105 each.</div>' +
-    '<div class="qrow"><strong>Then:</strong> the ACC is valid for 3 years. Renewal needs 40 hours of Continuing Coach Education (including 3 ethics hours) and 10 hours of mentor coaching.</div></div>';
+    '<div class="qrow"><strong>Then:</strong> the ACC is valid for 3 years. Renewal needs 40 CCE credits (at least 24 in Core Competencies, of which 3 in coaching ethics) plus 10 hours of mentor coaching, and costs $175 member / $275 non-member.</div></div>';
 
   h += '<div class="h-label">Policy watch</div>' +
     '<div class="card step policy"><div class="step-ic">!</div><div>' +
@@ -3034,6 +3462,7 @@ function maybeTick() {
 function render() {
   renderedToday = todayKey();
   document.getElementById('view').innerHTML =
+    view.tab === 'learn' ? vLearn() :
     view.tab === 'practise' ? vPractise() :
     view.tab === 'skills' ? vSkills() :
     view.tab === 'exam' ? vExam() :
@@ -3156,9 +3585,34 @@ Object.assign(ACTIONS, {
     var all = flashCards();
     if (b && b.dataset.id) all = all.filter(function (c) { return c.n === sectionById(b.dataset.id).n; });
     view.practise.screen = 'flash';
+    view.practise.ordered = false;
     view.practise.queue = shuffle(all.slice());
     view.practise.idx = 0;
     view.practise.revealed = false;
+    render();
+    window.scrollTo(0, 0);
+  },
+  'p-walk': function () {
+    var all = flashCards().filter(function (c) { return c.n <= 7; })
+      .sort(function (a, b2) { return a.n - b2.n; });
+    view.practise.screen = 'flash';
+    view.practise.ordered = true;
+    view.practise.queue = all;
+    view.practise.idx = 0;
+    view.practise.revealed = false;
+    render();
+    window.scrollTo(0, 0);
+  },
+  'p-tocc': function (b) {
+    view.tab = 'skills';
+    view.comp.sel = +b.dataset.id;
+    render();
+    window.scrollTo(0, 0);
+  },
+  'learn-jump': function (b) {
+    view.tab = 'learn';
+    view.learn.screen = 'mod';
+    view.learn.mod = b.dataset.id;
     render();
     window.scrollTo(0, 0);
   },
@@ -3203,6 +3657,41 @@ Object.assign(ACTIONS, {
     p.revealed = false;
     render();
     window.scrollTo(0, 0);
+  }
+});
+
+// learn
+Object.assign(ACTIONS, {
+  'learn-open': function (b) {
+    view.learn.screen = 'mod';
+    view.learn.mod = b.dataset.id;
+    render();
+    window.scrollTo(0, 0);
+  },
+  'learn-back': function () {
+    view.learn.screen = 'home';
+    render();
+    window.scrollTo(0, 0);
+  },
+  'learn-doc': function (b) {
+    view.learn.screen = 'doc';
+    if (b.dataset.id) view.learn.mod = b.dataset.id;
+    view.learn.doc = +b.dataset.i || 0;
+    render();
+    window.scrollTo(0, 0);
+    if (b.dataset.hl) hlDoc(view.learn.q);
+  },
+  'learn-mod-back': function () {
+    view.learn.screen = 'mod';
+    render();
+    window.scrollTo(0, 0);
+  },
+  'learn-read': function (b) {
+    var k = b.dataset.k;
+    if (db.learn.read[k]) delete db.learn.read[k];
+    else db.learn.read[k] = todayKey();
+    save();
+    render();
   }
 });
 
@@ -3265,6 +3754,7 @@ Object.assign(ACTIONS, {
   'ex-review-back': function () { view.exam.screen = view.exam.reviewFrom === 'results' ? 'results' : 'home'; render(); window.scrollTo(0, 0); },
   'ex-home': function () { view.exam.screen = 'home'; render(); window.scrollTo(0, 0); },
   'ex-cheat': function () { view.exam.screen = 'cheat'; render(); window.scrollTo(0, 0); },
+  'ex-facts': function () { view.exam.screen = 'facts'; render(); window.scrollTo(0, 0); },
   'ex-drill': function (b) { startDrill(b.dataset.v); },
   'ex-drill-ans': function (b) {
     var dr = view.exam.drill;
@@ -3573,6 +4063,14 @@ document.addEventListener('click', function (ev) {
   if (fn) fn(b);
 });
 
+document.addEventListener('input', function (ev) {
+  var el = ev.target;
+  if (!el || el.id !== 'learn-q') return;
+  view.learn.q = el.value;
+  var out = document.getElementById('learn-results');
+  if (out) out.innerHTML = learnResultsHTML(view.learn.q);
+});
+
 document.addEventListener('change', function (ev) {
   var el = ev.target;
   if (!el || !el.dataset) return;
@@ -3623,12 +4121,95 @@ document.addEventListener('visibilitychange', function () {
   }
 });
 
+/* ── access gate ─────────────────────────────────────────────────────── */
+var UNLOCK_KEY = 'acc.unlock.v1';
+var unlocking = false;
+
+function b64bytes(s) {
+  var bin = atob(s);
+  var a = new Uint8Array(bin.length);
+  for (var i = 0; i < bin.length; i++) a[i] = bin.charCodeAt(i);
+  return a;
+}
+function unlockWith(pw) {
+  if (typeof LEARN_ENC === 'undefined') return Promise.reject(new Error('nodata'));
+  if (!(window.crypto && crypto.subtle)) return Promise.reject(new Error('nocrypto'));
+  var base;
+  return crypto.subtle.importKey('raw', new TextEncoder().encode(pw), 'PBKDF2', false, ['deriveKey'])
+    .then(function (b) {
+      base = b;
+      return crypto.subtle.deriveKey(
+        { name: 'PBKDF2', hash: 'SHA-256', salt: b64bytes(LEARN_ENC.salt), iterations: LEARN_ENC.iter },
+        base, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
+    })
+    .then(function (key) {
+      return crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64bytes(LEARN_ENC.iv) }, key, b64bytes(LEARN_ENC.ct));
+    })
+    .then(function (buf) {
+      LEARN = JSON.parse(new TextDecoder().decode(buf));
+      LEARN_OK = Array.isArray(LEARN) && LEARN.length > 0;
+      LEARN_INDEX = null;
+      try { localStorage.setItem(UNLOCK_KEY, pw); } catch (e) {}
+    });
+}
+function lockMsg(msg) {
+  var el = document.getElementById('lock-err');
+  if (el) el.textContent = msg || '';
+}
+function showLock(msg) {
+  document.getElementById('lock').hidden = false;
+  lockMsg(msg);
+  var i = document.getElementById('lock-pw');
+  if (i) setTimeout(function () { i.focus(); }, 60);
+}
+function finishUnlock() {
+  document.getElementById('lock').hidden = true;
+  render();
+}
+function submitUnlock() {
+  if (unlocking) return;
+  var i = document.getElementById('lock-pw');
+  var pw = i ? i.value : '';
+  if (!pw) { lockMsg('Enter the access code.'); return; }
+  unlocking = true;
+  document.getElementById('lock-go').disabled = true;
+  lockMsg('');
+  unlockWith(pw).then(function () {
+    unlocking = false;
+    finishUnlock();
+  }).catch(function (e) {
+    unlocking = false;
+    document.getElementById('lock-go').disabled = false;
+    if (i) { i.value = ''; i.focus(); }
+    lockMsg(e && e.message === 'nodata'
+      ? 'The materials haven’t loaded — go online once and reload.'
+      : e && e.message === 'nocrypto'
+        ? 'This browser can’t decrypt the materials — use an up-to-date browser over https.'
+        : 'That code doesn’t open it — try again.');
+  });
+}
+ACTIONS['unlock'] = submitUnlock;
+document.addEventListener('keydown', function (ev) {
+  if (ev.key === 'Enter' && ev.target && ev.target.id === 'lock-pw') submitUnlock();
+});
+
 /* ── boot ────────────────────────────────────────────────────────────── */
 applyTheme();
 if (navigator.storage && navigator.storage.persist) {
   try { navigator.storage.persist().catch(function () {}); } catch (e) {}
 }
-render();
+(function boot() {
+  var saved = null;
+  try { saved = localStorage.getItem(UNLOCK_KEY); } catch (e) {}
+  if (saved) {
+    unlockWith(saved).then(finishUnlock).catch(function () {
+      try { localStorage.removeItem(UNLOCK_KEY); } catch (e) {}
+      showLock('');
+    });
+  } else {
+    showLock('');
+  }
+})();
 </script>
 <script>
 if ('serviceWorker' in navigator && location.protocol !== 'file:') {

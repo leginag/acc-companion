@@ -1,5 +1,5 @@
 // ACC Companion service worker — network-first with offline fallback.
-var CACHE = 'acc-companion-v1';
+var CACHE = 'acc-companion-v3';
 
 self.addEventListener('install', function () {
   self.skipWaiting();
