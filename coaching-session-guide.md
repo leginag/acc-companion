@@ -8,6 +8,7 @@
 
 - **Your job is the process, not the solution.** The coachee does the thinking; you hold the space. If you catch yourself wanting to be useful, that's the signal to slow down.
 - **Stay in present and future.** Consulting (telling them what to do) and therapy (dwelling in the emotional past) are the two failure modes assessors flag first.
+- **Trust is an opinion the coachee forms from your behaviour**, not a feeling you can manufacture. It grows from four qualities they experience repeatedly: competence (steady coaching presence), sincerity (words and conduct aligned), reliability (agreements honoured, confidentiality kept), and involvement (disciplined attention to *their* agenda).
 - **The phases are weather patterns, not railway stations** — hold the map internally, move through it in any order, never announce it.
 
 **Say early, in Creating Context:**
@@ -44,7 +45,9 @@ Paraphrase in **their** words between questions; verify with a closed question (
 
 - **Questions follow listening** — they arise from what was just said, never from a list.
 - **One question, then wait.** Stacking counts against Presence and Evokes Awareness.
-- **Their exact words, not synonyms.** "You said *stuck*" — not "trapped".
+- **Their exact words, not synonyms.** Coachee: "I feel stuck." Coach: "You said *stuck*." That is the entire move — then wait. Not "you seem stuck" (interpretation), not "trapped" (translation).
+- **The four curious stems** carry most of the middle: "You said ___" · "Tell me more about ___" · "I noticed you came back to ___" · "You used the word ___".
+- **The 3-second rule:** when the coachee stops speaking, count silently to three before you respond. New thinking usually arrives in that gap.
 - **Open questions** (what, how, when, where). "Why" sparingly — it invites justification. Closed questions only for verification, permission, and the door-check.
 - **No attachment**: if a question doesn't land, let it go.
 - **Silence is a tool**, especially in Deepening Insight. A question arriving too soon pulls the coachee off a forming insight.
